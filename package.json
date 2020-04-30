@@ -19,7 +19,7 @@
 		"compression": "^1.7.4",
 		"express": "^4.16.4",
 		"isomorphic-unfetch": "^3.0.0",
-		"next": "^8.0.0",
+		"next": "^9.3.5",
 		"next-compose": "0.0.2",
 		"next-routes": "^1.4.2",
 		"normalize-scss": "^7.0.1",
