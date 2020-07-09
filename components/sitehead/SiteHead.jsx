@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 
-const domain = 'www.theleakybarrel.com';
-
 class SiteHead extends PureComponent {
 
 	static propTypes = {
@@ -32,6 +30,8 @@ class SiteHead extends PureComponent {
 	}
 
 	render() {
+		const domain = 'www.theleakybarrel.com';
+		
 		return (
 			<Head>
 				<meta httpEquiv='X-UA-Compatible' content='IE=edge' />
