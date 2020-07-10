@@ -22,6 +22,10 @@ class Index extends Component {
 		router: PropTypes.object,
 	}
 
+	state = {
+		enter_water: false
+	}
+
 	constructor(props) {
 		super(props);
 	}
@@ -41,6 +45,38 @@ class Index extends Component {
 	// 	decrementCount()
 	// }
 
+	componentDidMount() {
+		// WATER CODE
+		this.key_value = {
+			87: 'w', 65: 'a', 84: 't', 69: 'e', 82: 'r', 69: 'e', 88: 'x', 79: 'o', 68: 'd', 85: 'u', 83: 's'
+		};
+		this.key_seq = [
+			'w', 'a', 't', 'e', 'r', 'e', 'x', 'o', 'd', 'u', 's'
+		];
+		this.key_position = 0;
+
+		document.addEventListener('keydown', this.waterExodus);
+	}
+
+	waterExodus = e => {
+		const key = this.key_value[e.keyCode];
+		const required_key = this.key_seq[this.key_position];
+
+		if (key === required_key) {
+			this.key_position++;
+
+			if (this.key_position === this.key_seq.length) {
+				console.log('water exodus!!');
+
+				this.setState({ enter_water: true });
+
+				this.key_position = 0;
+			}
+		} else {
+			this.key_position = 0;
+		}
+	}
+
 	render() {
 		const {
 			router
@@ -48,6 +84,17 @@ class Index extends Component {
 
 		const text_logo_styles = {
 			background: `url(static/leakybarrel-text-logo.png) center center / 100% no-repeat`
+		};
+
+		if (this.state.enter_water && !this.state.water_styles) {
+			setTimeout(() => {
+				this.setState({
+					water_styles: {
+						height: '100%',
+						opacity: '1'
+					}
+				});
+			}, 1000);
 		}
 
 		return (
@@ -153,6 +200,12 @@ class Index extends Component {
 						/>
 					</div>
 				</section>
+				{this.state.enter_water &&
+					<div className={styles('blue')} style={this.state.water_styles}>
+						<div className={styles('medallion')} />
+					</div>
+				}
+				
 			</>
 		)
 	}
